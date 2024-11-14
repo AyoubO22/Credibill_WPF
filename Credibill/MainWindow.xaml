@@ -1,0 +1,31 @@
+﻿<Window x:Class="CrediBill_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CrediBill_WPF"
+        xmlns:viewModels="clr-namespace:CrediBill_WPF.ViewModels"
+        Title="MainWindow" Height="450" Width="800">
+
+    <!-- Associe le ViewModel directement dans le DataContext de la fenêtre -->
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <!-- Définir le Frame pour la navigation -->
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+        <!-- Grille pour la disposition des boutons de navigation -->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Boutons de navigation -->
+            <Button Content="Voir Client" Command="{Binding NavigateToCustomerViewCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Margin="5"/>
+            <Button Content="Voir Facture" Command="{Binding NavigateToInvoiceViewCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Margin="5" Grid.Column="1"/>
+            <Button Content="Voir Paiement" Command="{Binding NavigateToPaymentViewCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Margin="5" Grid.Column="2"/>
+        </Grid>
+    </Grid>
+</Window>

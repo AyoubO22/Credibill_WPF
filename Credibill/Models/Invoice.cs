@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
+﻿using Credibill_WPF.Models;
 using System.ComponentModel.DataAnnotations.Schema;
-using Credibill_WPF.Models;
 
 namespace CrediBill_WPF.Models
 {
