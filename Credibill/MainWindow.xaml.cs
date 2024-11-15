@@ -19,11 +19,10 @@ using System.Windows;
 using System;
 
 using System.Windows;
-using Credibill_WPF.Views;
-// Assurez-vous que le namespace de votre CustomerView est inclus
 
 using System.Windows;
-using CrediBill_WPF.ViewModels; // Assurez-vous que le bon namespace est utilisé
+
+using System.Windows;
 
 namespace CrediBill_WPF
 {
@@ -32,9 +31,22 @@ namespace CrediBill_WPF
         public MainWindow()
         {
             InitializeComponent();
+        }
 
-            // Associer le MainViewModel à la fenêtre
-            this.DataContext = new MainViewModel(); // Initialisation du MainViewModel
+        private void NavigateToCustomerView(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Views.CustomerView();
+        }
+
+        private void NavigateToInvoiceView(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Views.InvoiceView();
+        }
+
+        private void NavigateToPaymentView(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Views.PaymentView();
         }
     }
 }
+
