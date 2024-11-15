@@ -9,12 +9,16 @@ Features
 
 	•	Customer Management:
 Add, view, edit, and delete customer information (name, email, phone number, etc.).
+
 	•	Invoice Management:
 Track invoices associated with customers, including amounts and issue dates.
+
 	•	Payment Tracking:
 Manage payments linked to invoices with details like amount and payment date.
+
 	•	Soft Deletion:
 Data is never permanently deleted; records are hidden using a Deleted property for better data retention.
+
 	•	Database Seeding:
 Pre-loaded sample data for testing purposes.
 
