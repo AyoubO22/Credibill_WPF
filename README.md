@@ -31,24 +31,6 @@ Technology Stack
 	•	MVVM Architecture: Applied with views and a clean separation of concerns.
 	•	LINQ: For querying data.
 
-Application Structure
-
-CrediBill_WPF  
-├── CrediBill_WPF.sln       // Solution file  
-├── Data                    // Database context and seeders  
-│   ├── AppDbContext.cs  
-│   ├── DbSeeder.cs  
-├── Models                  // Data models  
-│   ├── Customer.cs  
-│   ├── Invoice.cs  
-│   ├── Payment.cs  
-├── Views                   // WPF views (XAML and code-behind)  
-│   ├── MainWindow.xaml  
-│   ├── CustomerView.xaml  
-│   ├── InvoiceView.xaml  
-│   ├── PaymentView.xaml  
-├── App.xaml                // Application entry point  
-└── README.md               // Project documentation  
 
 Prerequisites
 
