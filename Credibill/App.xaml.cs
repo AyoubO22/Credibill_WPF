@@ -1,11 +1,10 @@
 ﻿using Credibill_WPF.Data;
-using CrediBill_WPF.Data;
 using Credibill_WPF;
 using System.Configuration;
 using System.Data;
 using System.Windows;
 
-namespace CrediBill_WPF
+namespace Credibill_WPF
 {
     public partial class App : Application
     {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Credibill_WPF.Models;
-using CrediBill_WPF.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Credibill_WPF.Data
@@ -20,7 +19,7 @@ namespace Credibill_WPF.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CredibillDB;Trusted_Connection=True;\r\n");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CredibillDB;Trusted_Connection=True;");
         }
 
         

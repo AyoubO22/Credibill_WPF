@@ -9,14 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\CustomerViewModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="ViewModels\CustomerViewModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>

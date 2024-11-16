@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CrediBill_WPF.Models
+namespace Credibill_WPF.Models
 {
     public class Payment
     {
