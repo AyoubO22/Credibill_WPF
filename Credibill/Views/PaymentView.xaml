@@ -1,16 +1,33 @@
 ﻿<UserControl x:Class="CrediBill_WPF.Views.PaymentView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CrediBill_WPF.Views"
-             xmlns:viewModels="clr-namespace:CrediBill_WPF.ViewModels">
-    <Grid>
-        <!-- UI pour gérer les paiements -->
-        <DataGrid ItemsSource="{Binding Payments}" AutoGenerateColumns="True" 
-                  SelectedItem="{Binding SelectedPayment}" />
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Button Content="Add Payment" Command="{Binding AddPaymentCommand}" />
-            <Button Content="Update Payment" Command="{Binding UpdatePaymentCommand}" />
-            <Button Content="Delete Payment" Command="{Binding DeletePaymentCommand}" />
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Payments table -->
+            <RowDefinition Height="Auto"/>
+            <!-- CRUD buttons -->
+        </Grid.RowDefinitions>
+
+        <!-- Payments table -->
+        <DataGrid Grid.Row="0" 
+                  ItemsSource="{Binding Payments}" 
+                  AutoGenerateColumns="False" 
+                  SelectedItem="{Binding SelectedPayment}" 
+                  Margin="10" 
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding PaymentDate, StringFormat=d}" Width="*"/>
+                <DataGridTextColumn Header="Invoice" Binding="{Binding Invoice.Id}" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- CRUD buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Add" Width="100" Margin="5" Command="{Binding AddPaymentCommand}"/>
+            <Button Content="Update" Width="100" Margin="5" Command="{Binding UpdatePaymentCommand}"/>
+            <Button Content="Delete" Width="100" Margin="5" Command="{Binding DeletePaymentCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

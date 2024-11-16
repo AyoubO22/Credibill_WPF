@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 using CrediBill_WPF.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using Credibill_WPF.Data;
 using Credibill_WPF.Models;
 
@@ -24,7 +22,7 @@ namespace CrediBill_WPF.Data
 
         public void Seed()
         {
-            // Créer les clients de test
+            // Create test customers
             if (!_context.Customers.Any())
             {
                 _context.Customers.AddRange(
@@ -44,7 +42,7 @@ namespace CrediBill_WPF.Data
                 _context.SaveChanges();
             }
 
-            // Créer les factures de test
+            // Create test invoices
             if (!_context.Invoices.Any())
             {
                 var customer1 = _context.Customers.First();
@@ -69,7 +67,7 @@ namespace CrediBill_WPF.Data
                 _context.SaveChanges();
             }
 
-            // Créer les paiements de test
+            // Create test payments
             if (!_context.Payments.Any())
             {
                 var invoice1 = _context.Invoices.First();

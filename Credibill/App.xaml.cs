@@ -14,7 +14,7 @@ namespace CrediBill_WPF
 
         public App()
         {
-            _context = new AppDbContext();  // Initialise le contexte de base de données
+            _context = new AppDbContext(); 
             _dbSeeder = new DbSeeder(_context);
         }
 
@@ -22,10 +22,9 @@ namespace CrediBill_WPF
         {
             base.OnStartup(e);
 
-            // Appel de la méthode Seed pour ajouter des données de test à la base de données
+
             _dbSeeder.Seed();
 
-            // Démarrer la fenêtre principale de l'application
             var mainWindow = new MainWindow();
             mainWindow.Show();
         }
