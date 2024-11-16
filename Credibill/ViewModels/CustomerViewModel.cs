@@ -5,7 +5,7 @@ using System.Windows.Input;
 using Credibill_WPF.Data;
 using Credibill_WPF.Models;
 
-namespace CrediBill_WPF.ViewModels
+namespace Credibill_WPF.ViewModels
 {
     public class CustomerViewModel : INotifyPropertyChanged
     {

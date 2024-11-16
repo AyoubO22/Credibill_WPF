@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using CrediBill_WPF.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using Credibill_WPF.Data;
 using Credibill_WPF.Models;
 
-namespace CrediBill_WPF.Data
+namespace Credibill_WPF.Data
 {
     public class DbSeeder
     {

@@ -1,4 +1,4 @@
-﻿using CrediBill_WPF.Models;
+﻿using Credibill_WPF.Models;
 
 namespace Credibill_WPF.Models
 {

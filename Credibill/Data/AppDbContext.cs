@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Credibill_WPF.Models;
-using CrediBill_WPF.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Credibill_WPF.Data

@@ -2,7 +2,7 @@
 using Credibill_WPF.Data;
 using Credibill_WPF.Views;
 
-namespace CrediBill_WPF
+namespace Credibill_WPF
 {
     public partial class MainWindow : Window
     {

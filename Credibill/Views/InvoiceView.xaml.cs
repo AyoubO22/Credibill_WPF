@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using Credibill_WPF.Data;
-using CrediBill_WPF.ViewModels;
+using Credibill_WPF.ViewModels;
 
 namespace Credibill_WPF.Views
 {
