@@ -3,12 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CrediBill_WPF.Views"
              xmlns:viewModels="clr-namespace:CrediBill_WPF.ViewModels">
-    <UserControl.DataContext>
-        <viewModels:PaymentViewModel />
-    </UserControl.DataContext>
     <Grid>
         <!-- UI pour gérer les paiements -->
-        <DataGrid ItemsSource="{Binding Payments}" AutoGenerateColumns="True" />
+        <DataGrid ItemsSource="{Binding Payments}" AutoGenerateColumns="True" 
+                  SelectedItem="{Binding SelectedPayment}" />
         <StackPanel Orientation="Horizontal" Margin="10">
             <Button Content="Add Payment" Command="{Binding AddPaymentCommand}" />
             <Button Content="Update Payment" Command="{Binding UpdatePaymentCommand}" />

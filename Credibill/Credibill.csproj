@@ -9,11 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\CustomerViewModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="ViewModels\CustomerViewModel.cs" />
+    <None Include="Views\CustomerView.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>

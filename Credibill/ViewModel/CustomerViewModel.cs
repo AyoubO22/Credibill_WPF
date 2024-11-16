@@ -1,8 +1,10 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Credibill_WPF.Data;
 using CrediBill_WPF.Data;
+using Credibill_WPF.Models;
 using CrediBill_WPF.Models;
 
 namespace CrediBill_WPF.ViewModels

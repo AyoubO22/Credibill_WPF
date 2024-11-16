@@ -6,7 +6,7 @@ using Credibill_WPF.Data;
 using CrediBill_WPF.Data;
 using CrediBill_WPF.Models;
 
-namespace CrediBill_WPF.ViewModels
+namespace Credibill.Views
 {
     public class PaymentViewModel : INotifyPropertyChanged
     {

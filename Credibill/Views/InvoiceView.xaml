@@ -3,12 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CrediBill_WPF.Views"
              xmlns:viewModels="clr-namespace:CrediBill_WPF.ViewModels">
-    <UserControl.DataContext>
-        <viewModels:InvoiceViewModel />
-    </UserControl.DataContext>
     <Grid>
         <!-- UI pour gérer les factures -->
-        <DataGrid ItemsSource="{Binding Invoices}" AutoGenerateColumns="True" />
+        <DataGrid ItemsSource="{Binding Invoices}" AutoGenerateColumns="True" 
+                  SelectedItem="{Binding SelectedInvoice}" />
         <StackPanel Orientation="Horizontal" Margin="10">
             <Button Content="Add Invoice" Command="{Binding AddInvoiceCommand}" />
             <Button Content="Update Invoice" Command="{Binding UpdateInvoiceCommand}" />
