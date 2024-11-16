@@ -1,51 +1,37 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using System.Windows;
-using System.Windows.Controls;
-
-using System.Windows;
-
-using System.Windows;
-
-using System;
-
-using System.Windows;
-
-using System.Windows;
-
-using System.Windows;
+﻿using System.Windows;
+using Credibill_WPF.Data;
+using Credibill_WPF.Views;
 
 namespace CrediBill_WPF
 {
     public partial class MainWindow : Window
     {
+        private AppDbContext _context;
+        private CustomerView _customerView;
+        private InvoiceView _invoiceView;
+        private PaymentView _paymentView;
         public MainWindow()
         {
+            _context = new AppDbContext();
+            _customerView = new CustomerView(_context);
+            _invoiceView = new InvoiceView(_context);
+            _paymentView = new PaymentView(_context);
             InitializeComponent();
         }
 
         private void NavigateToCustomerView(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Views.CustomerView();
+            MainFrame.Content = _customerView;
         }
 
         private void NavigateToInvoiceView(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Views.InvoiceView();
+            MainFrame.Content = _invoiceView;
         }
 
         private void NavigateToPaymentView(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Views.PaymentView();
+            MainFrame.Content = _paymentView;
         }
     }
 }
