@@ -25,6 +25,11 @@ namespace CrediBill_WPF.ViewModels
             }
         }
 
+        public InvoiceViewModel()
+        {
+
+        }
+
         public InvoiceViewModel(AppDbContext context)
         {
             _context = context;

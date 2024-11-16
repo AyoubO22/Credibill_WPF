@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using CrediBill_WPF.Data;
-using CrediBill_WPF.Models;
+using System.Windows.Input;
+using Credibill_WPF.Data;
+using Credibill_WPF.Models;
 
 namespace CrediBill_WPF.ViewModels
 {
@@ -24,11 +24,28 @@ namespace CrediBill_WPF.ViewModels
             }
         }
 
+        public CustomerViewModel()
+        {
+        }
+
         public CustomerViewModel(AppDbContext context)
         {
             _context = context;
             Customers = new ObservableCollection<Customer>(_context.Customers.ToList());
+
+            AddCustomerCommand = new RelayCommand<object>((o) => AddCustomer(new Customer()
+            {
+                Address = "Here",
+                Email = "test@mail.com",
+                Name = "You"
+            }));
+            UpdateCustomerCommand = new RelayCommand<object>((o) => UpdateCustomer(SelectedCustomer));
+            DeleteCustomerCommand = new RelayCommand<object>((o) => DeleteCustomer(SelectedCustomer));
         }
+
+        public ICommand AddCustomerCommand { get; set; }
+        public ICommand UpdateCustomerCommand { get; set; }
+        public ICommand DeleteCustomerCommand { get; set; }
 
         public void AddCustomer(Customer customer)
         {
