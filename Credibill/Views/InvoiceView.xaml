@@ -3,31 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <!-- Invoices table -->
             <RowDefinition Height="Auto"/>
-            <!-- CRUD buttons -->
+            <!-- Formulaire pour ajouter des factures -->
+            <RowDefinition Height="*"/>
+            <!-- DataGrid des factures -->
+            <RowDefinition Height="Auto"/>
+            <!-- Boutons CRUD -->
         </Grid.RowDefinitions>
 
-        <!-- Invoices table -->
-        <DataGrid Grid.Row="0" 
-                  ItemsSource="{Binding Invoices}" 
-                  AutoGenerateColumns="False" 
-                  SelectedItem="{Binding SelectedInvoice}" 
-                  Margin="10" 
+        <!-- Formulaire pour ajouter de nouvelles factures -->
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+            <TextBlock Text="Ajouter une nouvelle facture" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Montant:" Width="100" VerticalAlignment="Center"/>
+                <TextBox x:Name="AmountTextBox" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Date d'émission:" Width="100" VerticalAlignment="Center"/>
+                <TextBox x:Name="IssueDateTextBox" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Client:" Width="100" VerticalAlignment="Center"/>
+                <ComboBox x:Name="CustomerComboBox" Width="200"/>
+            </StackPanel>
+            <Button Content="Ajouter Facture" Width="150" HorizontalAlignment="Left" Click="AddInvoice_Click"/>
+            <Button Content="Mettre à jour" Width="100" Margin="5" Click="UpdateInvoice_Click"/>
+        </StackPanel>
+
+        <!-- DataGrid des factures -->
+        <DataGrid Grid.Row="1"
+                  x:Name="InvoiceDataGrid"
+                  AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedInvoice}"
+                  Margin="10"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding InvoiceDate, StringFormat=d}" Width="*"/>
-                <DataGridTextColumn Header="Customer" Binding="{Binding Customer.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Montant" Binding="{Binding Amount}" Width="*"/>
+                <DataGridTextColumn Header="Date d'émission" Binding="{Binding IssueDate}" Width="*"/>
+                <DataGridTextColumn Header="Client" Binding="{Binding Customer.Name}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- CRUD buttons -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Add" Width="100" Margin="5" Command="{Binding AddInvoiceCommand}"/>
-            <Button Content="Update" Width="100" Margin="5" Command="{Binding UpdateInvoiceCommand}"/>
-            <Button Content="Delete" Width="100" Margin="5" Command="{Binding DeleteInvoiceCommand}"/>
+        <!-- Boutons CRUD -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Supprimer" Width="100" Margin="5" Click="DeleteInvoice_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

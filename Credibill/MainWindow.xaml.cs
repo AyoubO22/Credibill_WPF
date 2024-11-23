@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
+using CrediBill_WPF.Views;
 
 namespace CrediBill_WPF
 {
@@ -13,17 +13,17 @@ namespace CrediBill_WPF
 
         private void NavigateToCustomerView(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Views.CustomerView();
+            MainFrame.Navigate(new CustomerView());
         }
 
         private void NavigateToInvoiceView(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Views.InvoiceView();
+            MainFrame.Navigate(new InvoiceView());
         }
 
         private void NavigateToPaymentView(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Views.PaymentView();
+            MainFrame.Navigate(new PaymentView());
         }
     }
 }
