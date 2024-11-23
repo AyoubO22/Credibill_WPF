@@ -20,9 +20,10 @@
             </Setter>
         </Style>
     </Window.Resources>
+
     <Grid>
         <DockPanel>
-            <!-- Barre de navigation -->
+            <!-- Navigation Bar -->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#2196F3" Height="50">
                 <Button Content="Customer View" Width="120" Margin="5" Foreground="White" Background="#1E88E5" 
                         Click="NavigateToCustomerView" Style="{StaticResource NavButtonStyle}"/>
@@ -32,15 +33,15 @@
                         Click="NavigateToPaymentView" Style="{StaticResource NavButtonStyle}"/>
             </StackPanel>
 
-            <!-- Frame principal -->
+            <!-- Main Frame -->
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="10">
                 <Frame.Content>
-                    <!-- Message d'accueil -->
+                    <!-- Welcome Message -->
                     <Grid>
-                        <TextBlock Text="Bienvenue dans l'application CrediBill !" 
+                        <TextBlock Text="Welcome to the CrediBill application!" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    FontSize="24" FontWeight="Bold" Foreground="#2196F3"/>
-                        <TextBlock Text="Utilisez les boutons ci-dessus pour naviguer entre les vues." 
+                        <TextBlock Text="Use the buttons above to navigate between views." 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0"
                                    FontSize="16" Foreground="Gray"/>
                     </Grid>

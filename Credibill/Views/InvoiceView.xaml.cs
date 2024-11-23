@@ -16,8 +16,22 @@ namespace CrediBill_WPF.Views
         public InvoiceView()
         {
             InitializeComponent();
-            _dbContext = new AppDbContext(); // Should ideally use Dependency Injection
-            LoadInvoices();
+            _dbContext = new AppDbContext(); // To be improved with dependency injection
+            LoadCustomers(); // Load customers for the ComboBox
+            LoadInvoices();  // Load invoices into the DataGrid
+        }
+
+        /// <summary>
+        /// Loads all customers into the ComboBox for customer selection.
+        /// </summary>
+        private void LoadCustomers()
+        {
+            var customers = _dbContext.Customers
+                .Where(c => c.Deleted == DateTime.MaxValue) // Only show non-deleted customers
+                .ToList();
+
+            // Bind the ComboBox to the customer list
+            CustomerComboBox.ItemsSource = customers;
         }
 
         /// <summary>
@@ -25,68 +39,59 @@ namespace CrediBill_WPF.Views
         /// </summary>
         private void LoadInvoices()
         {
-            // Refresh the invoice list by retrieving data from the database
+            // Refresh the invoices list by fetching the data from the database
             InvoiceDataGrid.ItemsSource = _dbContext.Invoices
-                .Where(i => i.Deleted == DateTime.MaxValue) // Only active invoices
+                .Where(i => i.Deleted == DateTime.MaxValue) // Only show non-deleted invoices
                 .ToList();
         }
 
         /// <summary>
-        /// Handles the logic for adding a new invoice to the database when the "Add Invoice" button is clicked.
+        /// Handles the logic to add a new invoice when the "Add Invoice" button is clicked.
         /// </summary>
         private void AddInvoice_Click(object sender, RoutedEventArgs e)
         {
-            decimal amount;
-            DateTime issueDate;
-
-            // Validate the amount
-            if (!decimal.TryParse(AmountTextBox.Text.Trim(), out amount))
+            // Validate input fields
+            if (CustomerComboBox.SelectedItem == null || string.IsNullOrWhiteSpace(AmountTextBox.Text))
             {
-                MessageBox.Show("Please enter a valid amount.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Customer and Amount are required.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Validate the issue date
-            if (!DateTime.TryParse(IssueDateTextBox.Text.Trim(), out issueDate))
+            // Get selected customer and invoice data
+            var selectedCustomer = (Customer)CustomerComboBox.SelectedItem;
+            if (!decimal.TryParse(AmountTextBox.Text.Trim(), out decimal amount))
             {
-                MessageBox.Show("Please enter a valid date.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Invalid amount entered.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            DateTime issueDate = IssueDatePicker.SelectedDate ?? DateTime.Now;
 
-            // Select a customer from the ComboBox
-            if (CustomerComboBox.SelectedItem is Customer selectedCustomer)
+            // Create a new invoice (Entity Framework will automatically generate the ID)
+            var newInvoice = new Invoice
             {
-                // Create a new invoice
-                var newInvoice = new Invoice
-                {
-                    Amount = amount,
-                    IssueDate = issueDate,
-                    CustomerId = selectedCustomer.Id,
-                    Deleted = DateTime.MaxValue // Active invoice
-                };
+                CustomerId = selectedCustomer.Id,
+                Amount = amount,
+                IssueDate = issueDate,
+                Deleted = DateTime.MaxValue // Set the invoice as active
+            };
 
-                // Add the new invoice to the database
-                _dbContext.Invoices.Add(newInvoice);
-                _dbContext.SaveChanges();
+            // Save the new invoice to the database
+            _dbContext.Invoices.Add(newInvoice);
+            _dbContext.SaveChanges();
 
-                MessageBox.Show("Invoice added successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Invoice added successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Reset input fields
-                AmountTextBox.Clear();
-                IssueDateTextBox.Clear();
-                CustomerComboBox.SelectedIndex = -1;
+            // Clear input fields after adding
+            AmountTextBox.Clear();
+            IssueDatePicker.SelectedDate = null;
+            CustomerComboBox.SelectedIndex = -1;
 
-                // Refresh the DataGrid to display the new invoice
-                LoadInvoices();
-            }
-            else
-            {
-                MessageBox.Show("Please select a customer.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            // Refresh the DataGrid to display the new invoice
+            LoadInvoices();
         }
 
         /// <summary>
-        /// Handles the logic for deleting a selected invoice when the "Delete" button is clicked.
+        /// Handles the logic to delete a selected invoice when the "Delete" button is clicked.
         /// </summary>
         private void DeleteInvoice_Click(object sender, RoutedEventArgs e)
         {
@@ -98,7 +103,7 @@ namespace CrediBill_WPF.Views
 
                 MessageBox.Show("Invoice deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Refresh the DataGrid to reflect the change
+                // Refresh the DataGrid to reflect changes
                 LoadInvoices();
             }
             else
@@ -108,18 +113,26 @@ namespace CrediBill_WPF.Views
         }
 
         /// <summary>
-        /// Handles the logic for updating the selected invoice when the "Update" button is clicked.
+        /// Handles the logic to update a selected invoice when the "Update" button is clicked.
         /// </summary>
         private void UpdateInvoice_Click(object sender, RoutedEventArgs e)
         {
             if (InvoiceDataGrid.SelectedItem is Invoice selectedInvoice)
             {
-                // Open the EditInvoiceWindow for editing the selected invoice
+                // Open the EditInvoiceWindow to edit the selected invoice
                 var editWindow = new EditInvoiceWindow(selectedInvoice);
-                editWindow.ShowDialog();
 
-                // Refresh the DataGrid to display any updates
-                LoadInvoices();
+                var result = editWindow.ShowDialog();
+
+                // If the update was successful, save the changes to the database
+                if (result == true)
+                {
+                    _dbContext.SaveChanges();
+                    MessageBox.Show("Invoice updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Refresh the DataGrid to display updated invoices
+                    LoadInvoices();
+                }
             }
             else
             {

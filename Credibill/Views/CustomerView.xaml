@@ -27,7 +27,7 @@
                 <TextBox x:Name="AddressTextBox" Width="200"/>
             </StackPanel>
             <Button Content="Add Customer" Width="150" HorizontalAlignment="Left" Click="AddCustomer_Click"/>
-            <Button Content="Update" Width="100" Margin="5" Click="UpdateCustomer_Click"/>
+            <Button Content="Update" Width="150" Margin="0,2" HorizontalAlignment="Left" Click="UpdateCustomer_Click"/>
         </StackPanel>
 
         <!-- Customers DataGrid -->

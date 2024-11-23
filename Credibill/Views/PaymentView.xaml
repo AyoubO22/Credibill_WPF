@@ -1,33 +1,70 @@
 ﻿<UserControl x:Class="CrediBill_WPF.Views.PaymentView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CrediBill_WPF.Views">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <!-- Payments table -->
             <RowDefinition Height="Auto"/>
-            <!-- CRUD buttons -->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Payments table -->
-        <DataGrid Grid.Row="0" 
-                  ItemsSource="{Binding Payments}" 
-                  AutoGenerateColumns="False" 
-                  SelectedItem="{Binding SelectedPayment}" 
-                  Margin="10" 
+        <!-- Payment Form -->
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+            <TextBlock Text="Add Payment" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Invoice Id:" Width="100" VerticalAlignment="Center"/>
+                <ComboBox x:Name="InvoiceComboBox" 
+                          Width="200" 
+                          SelectedValuePath="Id" 
+                          SelectedValue="{Binding SelectedInvoiceId}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Afficher l'ID de la facture et le montant entre parenthèses -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Id}" />
+                                <TextBlock Text="     (" />
+                                <TextBlock Text="{Binding Amount, StringFormat=C}" />
+                                <TextBlock Text=")" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Amount:" Width="100" VerticalAlignment="Center"/>
+                <TextBox x:Name="AmountTextBox" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Payment Date:" Width="100" VerticalAlignment="Center"/>
+                <DatePicker x:Name="PaymentDatePicker" Width="200" />
+            </StackPanel>
+            <Button Content="Add Payment" Width="150" HorizontalAlignment="Left" Click="AddPayment_Click"/>
+            <Button Content="Update Payment" Width="150" Margin="0,2" HorizontalAlignment="Left" Click="UpdatePayment_Click"/>
+        </StackPanel>
+
+        <!-- Payments DataGrid -->
+        <DataGrid Grid.Row="1"
+                  x:Name="PaymentDataGrid"
+                  AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedPayment}"
+                  Margin="10"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding PaymentDate, StringFormat=d}" Width="*"/>
-                <DataGridTextColumn Header="Invoice" Binding="{Binding Invoice.Id}" Width="2*"/>
+                <DataGridTextColumn Header="Invoice ID" Binding="{Binding InvoiceId}" Width="*"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat=C}" Width="*"/>
+                <DataGridTextColumn Header="Payment Date" Binding="{Binding PaymentDate, StringFormat=d}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- CRUD buttons -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Add" Width="100" Margin="5" Command="{Binding AddPaymentCommand}"/>
-            <Button Content="Update" Width="100" Margin="5" Command="{Binding UpdatePaymentCommand}"/>
-            <Button Content="Delete" Width="100" Margin="5" Command="{Binding DeletePaymentCommand}"/>
+        <!-- Buttons for CRUD -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Delete Payment" Width="150" Margin="5" Click="DeletePayment_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -25,5 +25,6 @@ namespace CrediBill_WPF
         {
             MainFrame.Navigate(new PaymentView());
         }
+
     }
 }
