@@ -33,7 +33,7 @@
             </StackPanel>
 
             <Button Content="Add Invoice" Width="150" HorizontalAlignment="Left" Click="AddInvoice_Click"/>
-            <Button Content="Update" Width="150" Margin="0,2" HorizontalAlignment="Left" Click="UpdateInvoice_Click"/>
+            
         </StackPanel>
 
         <!-- Invoices DataGrid -->
@@ -53,6 +53,7 @@
         <!-- CRUD Buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button Content="Delete" Width="100" Margin="5" Click="DeleteInvoice_Click"/>
+            <Button Content="Edit" Width="100" Margin="5" Click="UpdateInvoice_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

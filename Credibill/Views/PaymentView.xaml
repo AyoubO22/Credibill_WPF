@@ -45,7 +45,7 @@
                 <DatePicker x:Name="PaymentDatePicker" Width="200" />
             </StackPanel>
             <Button Content="Add Payment" Width="150" HorizontalAlignment="Left" Click="AddPayment_Click"/>
-            <Button Content="Update Payment" Width="150" Margin="0,2" HorizontalAlignment="Left" Click="UpdatePayment_Click"/>
+            
         </StackPanel>
 
         <!-- Payments DataGrid -->
@@ -64,7 +64,8 @@
 
         <!-- Buttons for CRUD -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Delete Payment" Width="150" Margin="5" Click="DeletePayment_Click"/>
+            <Button Content="Delete" Width="100" Margin="5" Click="DeletePayment_Click"/>
+            <Button Content="Edit" Width="100" Margin="5" Click="UpdatePayment_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

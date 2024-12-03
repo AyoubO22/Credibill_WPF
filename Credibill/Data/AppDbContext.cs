@@ -20,7 +20,7 @@ namespace Credibill_WPF.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CredibillDB;Trusted_Connection=True;\r\n");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CredibillDBWPF;Trusted_Connection=True;\r\n");
         }
 
         
